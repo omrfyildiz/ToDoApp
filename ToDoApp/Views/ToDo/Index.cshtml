@@ -1,5 +1,4 @@
 ﻿@model ToDoViewModel
-@using Humanizer;
 
 @{
     ViewData["Title"] = "Manage Your ToDo List";
@@ -24,7 +23,7 @@
                     <input type="checkbox" name="@item.Id" value="true" class="done-checkbox">
                 </td>
                 <td>@item.Title</td>
-                <td>@item.StartedAt.Humanize()</td>
+                <td>@item.StartedAt</td>
             </tr>
         }
     </table>
