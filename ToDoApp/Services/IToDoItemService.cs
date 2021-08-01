@@ -9,7 +9,5 @@ namespace ToDoApp.Services
     public interface IToDoItemService
     {
         Task<IEnumerable<ToDoItem>> GetIncompleteItemsAsync();
-        Task<bool> AddItemAsync(NewToDoItem newItem);
-        
     }
 }
