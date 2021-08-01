@@ -20,7 +20,7 @@ namespace ToDoApp.Controllers
         public async Task<IActionResult> Index()
         {
             var toDoItems = await _toDoItemService.GetIncompleteItemsAsync();
-            
+
             var model = new ToDoViewModel()
             {
                 ToDoItems = toDoItems
@@ -29,5 +29,24 @@ namespace ToDoApp.Controllers
             return View(model);
 
         }
+
+        public async Task<IActionResult> AddItem(NewToDoItem newItem)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var successful = await _toDoItemService.AddItemAsync(newItem);
+            if (!successful)
+            {
+                return BadRequest(new { error = "Could not be added item" });
+            }
+
+            return Ok();
+        }
+
+
+
     }
 }
