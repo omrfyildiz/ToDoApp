@@ -2,6 +2,11 @@
 
     //addItem function will work when be clicked Add button
     $('#add-item-button').on('click', addItem);
+
+    //done-checkbox classes will work when be clicked checkbox
+    $('.done-checkbox').on('click', function (e) {
+        markCompleted(e.target);
+    });
 });
 
 function addItem() {
@@ -19,6 +24,16 @@ function addItem() {
                 $('#add-item-error').show();
             }
         });
+}
+
+function markCompleted(checkbox) {
+    checkbox.disabled = true;
+
+    $.post('/ToDo/MarkDone', { id: checkbox.name }, function () {
+        var row = checkbox.parentElement.parentElement;
+        $(row).addClass('done');
+    });
+
 }
 
 
