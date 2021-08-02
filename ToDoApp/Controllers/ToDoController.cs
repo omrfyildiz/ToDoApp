@@ -30,6 +30,7 @@ namespace ToDoApp.Controllers
             return user;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var toDoItems = await _toDoItemService.GetIncompleteItemsAsync(GetCurrentUser().Id);
@@ -43,6 +44,7 @@ namespace ToDoApp.Controllers
 
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddItem(NewToDoItem newItem)
         {
             if (!ModelState.IsValid)
@@ -59,6 +61,7 @@ namespace ToDoApp.Controllers
             return Ok();
         }
 
+        [HttpPost]
         public async Task<IActionResult> MarkDoneAsync(Guid id)
         {
             if (id == Guid.Empty) return BadRequest();
