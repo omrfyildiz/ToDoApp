@@ -17,47 +17,15 @@ namespace ToDoApp.Services
             _context = context;
         }
 
-        public async Task<bool> AddItemAsync(NewToDoItem newItem, string userId)
-        {
-            var entity = new ToDoItem
-            {
-                Id = Guid.NewGuid(),
-                IsDone = false,
-                Title = newItem.Title,
-                StartedAt = DateTimeOffset.Now,
-                OwnerId=userId
-
-            };
-
-            _context.ToDoItems.Add(entity);
-
-            var saveResult = await _context.SaveChangesAsync();
-
-            return saveResult == 1;
-        }
-
-        public async Task<IEnumerable<ToDoItem>> GetIncompleteItemsAsync(string id)
+        public async Task<IEnumerable<ToDoItem>> GetIncompleteItemsAsync()
         {
             var items = await _context.ToDoItems
-                .Where(x => x.IsDone == false && x.OwnerId==id)
+                .Where(x => x.IsDone == false)
                 .ToArrayAsync();
 
             return items;
         }
 
-        public async Task<bool> MarkDoneAsync(Guid id)
-        {
-            var item = await _context.ToDoItems
-                .Where(x => x.Id == id)
-                .SingleOrDefaultAsync();
-
-            if (item == null) return false;
-
-            item.IsDone = true;
-
-            var saveResult = await _context.SaveChangesAsync();
-            return saveResult == 1;
-        }
     }
     
 }

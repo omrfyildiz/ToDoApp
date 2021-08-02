@@ -8,8 +8,6 @@ namespace ToDoApp.Services
 {
     public interface IToDoItemService
     {
-        Task<IEnumerable<ToDoItem>> GetIncompleteItemsAsync(string id);
-        Task<bool> AddItemAsync(NewToDoItem newItem, string userId);
-        Task<bool> MarkDoneAsync(Guid id);
+        Task<IEnumerable<ToDoItem>> GetIncompleteItemsAsync();
     }
 }
