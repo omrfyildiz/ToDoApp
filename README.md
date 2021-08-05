@@ -1,6 +1,6 @@
 # ToDoApp
 
-This application is a ToDo List App which each user can create own list. The user can add ToDo item with start time after registering with email and password. Also user is able to delete items with marking checkbox. Deleted items will be disappeared after refreshing the page.
+This application is a ToDo List App which users can create their own list. The user can add ToDo item with start-time after registering with email and password. Also user is able to delete items with marking checkbox. Deleted items will be disappeared after refreshing the page.
 
 The technology stack that has been implemented relies on:
 
