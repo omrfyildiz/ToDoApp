@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ToDoApp.Models;
 using ToDoApp.Services;
 
+
 namespace ToDoApp.Controllers
 {
     [Authorize]
@@ -55,7 +56,7 @@ namespace ToDoApp.Controllers
             var successful = await _toDoItemService.AddItemAsync(newItem, GetCurrentUser().Id);
             if (!successful)
             {
-                return BadRequest(new { error = "Could not be added item" });
+                return BadRequest(new { error = "Could not add item" });
             }
 
             return Ok();

@@ -10,7 +10,7 @@ namespace ToDoApp.Services
 {
     public class ToDoItemService : IToDoItemService
     {
-         private readonly ToDoDbContext _context;
+        private readonly ToDoDbContext _context;
 
         public ToDoItemService(ToDoDbContext context)
         {
@@ -25,7 +25,7 @@ namespace ToDoApp.Services
                 IsDone = false,
                 Title = newItem.Title,
                 StartedAt = DateTimeOffset.Now,
-                OwnerId=userId
+                OwnerId = userId
 
             };
 
@@ -39,7 +39,7 @@ namespace ToDoApp.Services
         public async Task<IEnumerable<ToDoItem>> GetIncompleteItemsAsync(string id)
         {
             var items = await _context.ToDoItems
-                .Where(x => x.IsDone == false && x.OwnerId==id)
+                .Where(x => x.IsDone == false && x.OwnerId == id)
                 .ToArrayAsync();
 
             return items;
@@ -59,5 +59,5 @@ namespace ToDoApp.Services
             return saveResult == 1;
         }
     }
-    
+
 }
